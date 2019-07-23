@@ -12,6 +12,14 @@ class App extends Component {
     series: []
   }
 
+  componentDidMount() {
+    const series = ["Vikings", "Game of Thrones"];
+    setTimeout(()=> {
+//both are correct - same result
+//      this.setState({series: series});
+      this.setState({series});
+    }, 2000);
+  }
   render() {
     return (
       <div className="App">
