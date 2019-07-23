@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import './App.css';
 import Intro from '../Intro';
+import 'whatwg-fetch';
+
 //both are correct - same result
 //function App() {
 //or
@@ -13,12 +15,11 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const series = ["Vikings", "Game of Thrones"];
-    setTimeout(()=> {
-//both are correct - same result
-//      this.setState({series: series});
-      this.setState({series});
-    }, 2000);
+    fetch('http://api.tvmaze.com/search/shows?q=Vikings')
+    .then((response) => response.json())
+    .then(json => this.setState({
+      series: json
+    }));
   }
   render() {
     return (
